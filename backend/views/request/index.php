@@ -20,8 +20,16 @@ $this->params['breadcrumbs'][] = $this->title;
         //'id',
         'email:email',
         'name',
-        'client_id',
-        'service_id',
+        [
+            'attribute'=>'client',
+            'value'=>'client.passport',
+            'label'=>'Паспортные данные клиента'
+        ],
+        [
+            'attribute'=>'service',
+            'value'=>'service.name',
+            'label'=>'На услугу'
+        ],
 
         ['class' => 'yii\grid\ActionColumn'],
     ]
@@ -31,9 +39,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => $columns,
         'panel' => [
-            'heading'=>'<h3 class="panel-title"><i class="fas fa-globe"></i> Заявки </h3>',
+            'heading'=>'<h3 class="panel-title"><i class="fas fa-comments"></i> Заявки </h3>',
             'type'=>'default',
-            'before'=>Html::a('<i class="fas fa-plus"></i> Создать заявку', ['create'], ['class' => 'btn btn-success']),
+            //'before'=>Html::a('<i class="fas fa-plus"></i> Создать заявку', ['create'], ['class' => 'btn btn-success']),
         ],
         'toolbar'=>[
                 Html::a('<i class="fas fa-redo"></i> Сбросить фильтр', ['index'], ['class' => 'btn btn-info']),

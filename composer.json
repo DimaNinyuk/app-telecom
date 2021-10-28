@@ -21,7 +21,9 @@
         "kartik-v/yii2-widgets": "*",
         "kartik-v/yii2-grid": "@dev",
         "kartik-v/yii2-dynagrid": "@dev",
-        "kartik-v/yii2-dialog": "@dev"
+        "kartik-v/yii2-dialog": "@dev",
+        "kartik-v/yii2-tabs-x": "dev-master",
+        "rmrevin/yii2-fontawesome": "3.7.*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

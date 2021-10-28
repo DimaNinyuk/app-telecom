@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => $columns,
         'panel' => [
-            'heading'=>'<h3 class="panel-title"><i class="fas fa-globe"></i> Подключения </h3>',
+            'heading'=>'<h3 class="panel-title"><i class="fas fa-plug"></i> Подключения </h3>',
             'type'=>'default',
             'before'=>Html::a('<i class="fas fa-plus"></i> Создать подключение', ['create'], ['class' => 'btn btn-success']),
         ],

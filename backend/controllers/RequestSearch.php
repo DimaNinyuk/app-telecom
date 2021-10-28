@@ -11,6 +11,8 @@ use backend\models\request\Requests;
  */
 class RequestSearch extends Requests
 {
+    public $service;
+    public $client;
     /**
      * {@inheritdoc}
      */
@@ -18,7 +20,7 @@ class RequestSearch extends Requests
     {
         return [
             [['id', 'client_id', 'service_id'], 'integer'],
-            [['email', 'name'], 'safe'],
+            [['email', 'name','service','client'], 'safe'],
         ];
     }
 
@@ -43,9 +45,26 @@ class RequestSearch extends Requests
         $query = Requests::find();
 
         // add conditions that should always apply here
-
+        $query->joinWith('service');
+        $query->joinWith('client');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'attributes' => [
+                    'email',
+                    'name',
+                    'service' => [
+                        'asc' => ['services.name' => SORT_ASC],
+                        'desc' => ['services.name' => SORT_DESC],
+                        'default' => SORT_DESC
+                    ],
+                    'client' => [
+                        'asc' => ['clients.passport' => SORT_ASC],
+                        'desc' => ['clients.passport' => SORT_DESC],
+                        'default' => SORT_DESC
+                    ],
+                ],
+            ]
         ]);
 
         $this->load($params);
@@ -59,12 +78,12 @@ class RequestSearch extends Requests
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'client_id' => $this->client_id,
-            'service_id' => $this->service_id,
         ]);
 
         $query->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'name', $this->name]);
+            ->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'services.name', $this->service])
+            ->andFilterWhere(['like', 'clients.passport', $this->client]);
 
         return $dataProvider;
     }
