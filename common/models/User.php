@@ -58,6 +58,14 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
         ];
     }
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'ФИО',
+            'email' => 'Дата рождения',
+        ];
+    }
 
     /**
      * {@inheritdoc}

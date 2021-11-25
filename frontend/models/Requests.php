@@ -13,10 +13,8 @@ use Yii;
  * @property int|null $client_id
  * @property int|null $service_id
  *
- * @property Clients $client
- * @property RequestStatus[] $requestStatuses
- * @property Services $service
- */
+
+ **/
 class Requests extends \yii\db\ActiveRecord
 {
     /**
@@ -36,8 +34,7 @@ class Requests extends \yii\db\ActiveRecord
             [['email', 'name'], 'required'],
             [['client_id', 'service_id'], 'integer'],
             [['email', 'name'], 'string', 'max' => 100],
-            [['client_id'], 'exist', 'skipOnError' => true, 'targetClass' => Clients::className(), 'targetAttribute' => ['client_id' => 'id']],
-            [['service_id'], 'exist', 'skipOnError' => true, 'targetClass' => Services::className(), 'targetAttribute' => ['service_id' => 'id']],
+           
         ];
     }
 
@@ -55,35 +52,9 @@ class Requests extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * Gets query for [[Client]].
-     *
-     * @return \yii\db\ActiveQuery|ClientsQuery
-     */
-    public function getClient()
-    {
-        return $this->hasOne(Clients::className(), ['id' => 'client_id']);
-    }
 
-    /**
-     * Gets query for [[RequestStatuses]].
-     *
-     * @return \yii\db\ActiveQuery|RequestStatusQuery
-     */
-    public function getRequestStatuses()
-    {
-        return $this->hasMany(RequestStatus::className(), ['request_id' => 'id']);
-    }
 
-    /**
-     * Gets query for [[Service]].
-     *
-     * @return \yii\db\ActiveQuery|ServicesQuery
-     */
-    public function getService()
-    {
-        return $this->hasOne(Services::className(), ['id' => 'service_id']);
-    }
+
 
     /**
      * {@inheritdoc}

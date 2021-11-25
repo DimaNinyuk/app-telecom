@@ -408,22 +408,21 @@ $this->title = 'Таттелеком';
     <!-- Start Main Paragraph -->
     <p class="main dark-gray">Напишите нам!</p>
     <!-- Start Main Paragraph -->
-    <?php $form = \yii\widgets\ActiveForm::begin([
-        'action' => ['/create-request'],
-        'method' => 'get',
+    <?php $form = \yii\bootstrap4\ActiveForm::begin([
+        'id' => 'index-form',
+        'action'=>'/site/create',
+        'enableClientValidation' => true,
+        'method'=>'post'
     ]); ?>
-    <label>Name</label><br>
-    <input type="text" value="" class="form"><br>
+    <label>ФИО</label><br>
+    <input type="text"name="name" class="form"><br>
 
-    <label>Email</label><br>
-    <input type="text" value="" class="form"><br>
+    <label>Почта</label><br>
+    <input type="text" name="email" class="form"><br>
 
-    <label>Message</label><br>
-    <textarea rows="3" class="form"></textarea>
+    <label>Сообщение</label><br>
+    <textarea rows="3" name="txt" class="form"></textarea>
     <input class = "btn btn-primary" type="submit" value="Отправить" />
-
-    <!-- Clear :) -->
-    <div class="clear"></div>
-    <?php \yii\widgets\ActiveForm::end(); ?>
+    <?php \yii\bootstrap4\ActiveForm::end(); ?>
 </div>
 <!-- End Content -->

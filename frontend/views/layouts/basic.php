@@ -58,7 +58,7 @@ AppAsset::register($this);
 
 
 <footer class="footer">
-    <a href="http://ninetofive.me"><h6>© Copyright 2014 | ninetofive.me</h6></a>
+    <a href="https://vk.com/letairu"><h6>© Таттелеком</h6></a>
 </footer>
 <?php $this->endBody() ?>
 </body>

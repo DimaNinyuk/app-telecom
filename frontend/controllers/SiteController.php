@@ -1,11 +1,9 @@
 <?php
 
 namespace frontend\controllers;
-
+use Yii;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
-
-use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -16,6 +14,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+
 
 /**
  * Site controller
@@ -78,10 +77,13 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
-    public function actionCreateRequest(){
-        $model = new ResendVerificationEmailForm();
-        if(Yii::$app->request->post()){
-
+    public function actionCreate(){
+        $model = new \frontend\models\Requests();
+        $model->email = Yii::$app->request->post('email');
+        $model->name = Yii::$app->request->post('name');
+        $model->txt = Yii::$app->request->post('txt');
+        if($model->save()){
+            $this->redirect('/');
         }
     }
 
